@@ -49,3 +49,10 @@ class Line():
 
     def toString(self):
         return "Line: " + self.p1.toString() + " to " + self.p2.toString()
+
+    def get_start_point(self):
+        return self.p1
+
+    def get_end_point(self):
+        return self.p2
+        

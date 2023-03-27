@@ -25,7 +25,7 @@ class Line(Line):
         pygame.draw.line(screen, self.color, (self.p1.x * SCALE_FACTOR + ORIGIN_OFFSET, self.p1.y * -SCALE_FACTOR + ORIGIN_OFFSET), (self.p2.x * SCALE_FACTOR + ORIGIN_OFFSET, self.p2.y * -SCALE_FACTOR + ORIGIN_OFFSET), self.width)
 
         #draw circle at the start of the line
-        pygame.draw.circle(screen, (255,0,0), (self.p1.x * SCALE_FACTOR + ORIGIN_OFFSET, self.p1.y * SCALE_FACTOR + ORIGIN_OFFSET), 5)
+        pygame.draw.circle(screen, (255,0,0), (self.p1.x * SCALE_FACTOR + ORIGIN_OFFSET, self.p1.y * -SCALE_FACTOR + ORIGIN_OFFSET), 5)
         
         
         
@@ -38,9 +38,12 @@ p2 = Point(0.5,0.5)
 p3 = Point(0.2,0.6)  
 
 #our special lines
-l1 = Line(p1,p2)
+l1 = Line(Point(0,0), Point(0.5,0.4))
 l1.set_angle(math.radians(-60))
-l2 = Line(p2,p3)
+
+l2 = Line(l1.get_end_point(), Point(0.8,0.2))
+
+
 
 
 print(l1.toString())
@@ -62,9 +65,6 @@ def quit():
         if event.type == pygame.QUIT:
             return True
     return False
-
-
-     
 
 
 while not quit():
