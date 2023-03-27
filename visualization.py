@@ -1,4 +1,6 @@
 from main import *
+import math
+import time
 
 WIDTH=800  
 HEIGHT=800
@@ -13,7 +15,6 @@ class Line(Line):
         #call the parent constructor
 
         super().__init__(p1 , p2)
-        print(self.toString())
         #set the color to be drawn
         self.color = (0,0,0)
         #set the width of the line
@@ -37,10 +38,15 @@ p2 = Point(0.5,0.5)
 p3 = Point(0.2,0.6)  
 
 #our special lines
-l1 = Line(Point(0, 0), Point(1, 1))
-l1.set_angle(90)
+l1 = Line(p1,p2)
+l1.set_angle(math.radians(-60))
+l2 = Line(p2,p3)
+
+
+print(l1.toString())
 
 lines.append(l1)
+lines.append(l2)
 
 # Simple pygame program
 
@@ -51,23 +57,22 @@ pygame.init()
 # Set up the drawing window
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 
-# Run until the user asks to quit
-running = True
-while running:
-
-    # Did the user click the window close button?
+def quit():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            return True
+    return False
 
-    # Fill the background with white
+
+     
+
+
+while not quit():
     screen.fill((255, 255, 255))
-    
+                    
     for line in lines:
         line.draw()
-    # Draw a solid blue circle in the center
-    
-
+        
     # Flip the display
     pygame.display.flip()
 

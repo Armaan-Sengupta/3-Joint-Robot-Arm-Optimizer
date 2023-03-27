@@ -29,7 +29,6 @@ class Line():
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
-        self.angle = self.get_angle();
 
     def get_length(self):
         return math.sqrt((self.p2.x - self.p1.x)**2 + (self.p2.y - self.p1.y)**2)
@@ -38,13 +37,15 @@ class Line():
         return math.atan2(self.p2.y - self.p1.y, self.p2.x - self.p1.x)
 
     def set_length(self, length):
-        self.p2.x = self.p1.x + length * self.get_slope()
-        self.p2.y = self.p1.y + length
+        angle = self.get_angle()
+        self.p2.x = round(self.p1.x + length * math.cos(angle),10)
+        self.p2.y = round(self.p1.y + length * math.sin(angle),10)
 
     #make a function to update point 2 based on the angle and length
     def set_angle(self, angle):
-        self.p2.x = self.p1.x + self.get_length() * math.cos(angle)
-        self.p2.y = self.p1.y + self.get_length() * math.sin(angle)
+        length = self.get_length()
+        self.p2.x = round(self.p1.x + length * math.cos(angle),10)
+        self.p2.y = round(self.p1.y + length * math.sin(angle),10)
 
     def toString(self):
         return "Line: " + self.p1.toString() + " to " + self.p2.toString()
