@@ -41,10 +41,17 @@ class Line():
         self.p2.x = self.p1.x + length * self.get_slope()
         self.p2.y = self.p1.y + length
 
-    #make a function to update point 2 based on the angle and length
+    # make a function to update point 2 based on the angle and length
     def set_angle(self, angle):
         self.p2.x = self.p1.x + self.get_length() * math.cos(angle)
         self.p2.y = self.p1.y + self.get_length() * math.sin(angle)
 
     def toString(self):
         return "Line: " + self.p1.toString() + " to " + self.p2.toString()
+
+    def start(self):
+        return self.p1
+    def end(self):
+        return self.p2
+
+
