@@ -36,16 +36,26 @@ class Line():
     def get_angle(self):
         return math.atan2(self.p2.y - self.p1.y, self.p2.x - self.p1.x)
 
-    def set_length(self, length):
+    def set_length(self, length,change_start_point = False):
         angle = self.get_angle()
-        self.p2.x = round(self.p1.x + length * math.cos(angle),10)
-        self.p2.y = round(self.p1.y + length * math.sin(angle),10)
+        if change_start_point:
+            self.p1.x = round(self.p2.x - length * math.cos(angle),10)
+            self.p1.y = round(self.p2.y - length * math.sin(angle),10)
+
+        else:
+            self.p2.x = round(self.p1.x + length * math.cos(angle),10)
+            self.p2.y = round(self.p1.y + length * math.sin(angle),10)
 
     #make a function to update point 2 based on the angle and length
-    def set_angle(self, angle):
+    def set_angle(self, angle,change_start_point = False):
         length = self.get_length()
-        self.p2.x = round(self.p1.x + length * math.cos(angle),10)
-        self.p2.y = round(self.p1.y + length * math.sin(angle),10)
+        if change_start_point:
+            self.p1.x = round(self.p2.x - length * math.cos(angle),10)
+            self.p1.y = round(self.p2.y - length * math.sin(angle),10)
+
+        else:
+            self.p2.x = round(self.p1.x + length * math.cos(angle),10)
+            self.p2.y = round(self.p1.y + length * math.sin(angle),10)
 
     def toString(self):
         return "Line: " + self.p1.toString() + " to " + self.p2.toString()
@@ -55,4 +65,10 @@ class Line():
 
     def get_end_point(self):
         return self.p2
+
+    def set_start_point(self, p):
+        self.p1 = p
+
+    def set_end_point(self, p):
+        self.p2 = p
         

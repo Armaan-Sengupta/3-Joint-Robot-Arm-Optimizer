@@ -38,18 +38,14 @@ p2 = Point(0.5,0.5)
 p3 = Point(0.2,0.6)  
 
 #our special lines
-l1 = Line(Point(0,0), Point(0.5,0.4))
-l1.set_angle(math.radians(-60))
-
-l2 = Line(l1.get_end_point(), Point(0.8,0.2))
-
-
+l1 = Line(Point(0,0), Point(0.75,0.1))
+l1.set_angle(math.radians(-60),True)
 
 
 print(l1.toString())
 
 lines.append(l1)
-lines.append(l2)
+
 
 # Simple pygame program
 
@@ -66,6 +62,11 @@ def quit():
             return True
     return False
 
+
+#draw some dotted lines to represent the origin and the x and y axis
+for i in range(0,WIDTH,10):
+    pygame.draw.line(screen, (0,0,0), (i, 0), (i, HEIGHT), 1)
+    pygame.draw.line(screen, (0,0,0), (0, i), (WIDTH, i), 1)
 
 while not quit():
     screen.fill((255, 255, 255))
